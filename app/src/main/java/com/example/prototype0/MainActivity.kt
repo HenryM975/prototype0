@@ -1,17 +1,29 @@
 package com.example.prototype0
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.PendingIntent
+import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.icu.util.Calendar
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.TimePicker
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.Worker
+import androidx.work.WorkerParameters
+import java.util.concurrent.TimeUnit
 import kotlin.concurrent.timer
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
     companion object {
         const val NOTIFICATION_ID = 101
@@ -49,5 +61,21 @@ class MainActivity : AppCompatActivity() {
             //}
         }
     }
+    fun  setting(v: View){
+            val tpf = MyTimePicker()
+            tpf.show(supportFragmentManager, "picker")
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onTimeSet(p0: TimePicker?, hourOfDay: Int, minute: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+        calendar.set(Calendar.MINUTE, minute)
+        val am = getSystemService(ALARM_SERVICE) as AlarmManager
+        val myIntent = Intent(applicationContext, MyReciever::class.java)
+        val mypIntent = PendingIntent.getBroadcast(applicationContext, 10, myIntent, 0)
+        am.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, mypIntent)
+    }
+
 
 }
