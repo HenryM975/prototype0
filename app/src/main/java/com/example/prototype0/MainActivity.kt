@@ -13,12 +13,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.Worker
-import androidx.work.WorkerParameters
+import androidx.work.*
+import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.timer
 
@@ -75,6 +75,22 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         val myIntent = Intent(applicationContext, MyReciever::class.java)
         val mypIntent = PendingIntent.getBroadcast(applicationContext, 10, myIntent, 0)
         am.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, mypIntent)
+    }
+
+    fun start_wm(v: View){
+        val t1 = OneTimeWorkRequestBuilder<MyWM>().build()
+        val d = Data.Builder().putInt("begin", Int.MIN_VALUE).putInt("end", Int.MAX_VALUE).build()
+        val t2 = OneTimeWorkRequestBuilder<MyWM1>().setInputData(d).build()
+        WorkManager.getInstance(this)
+            .beginWith(t1)
+            //.then(t3Test)
+            //.then(Arrays.asList(t1, t2))
+            //.then(t2)
+            .enqueue()
+    }
+
+    fun PTT(v: View){
+
     }
 
 

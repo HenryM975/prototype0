@@ -20,6 +20,6 @@ class MyReciever: BroadcastReceiver() {
             mp.start()
             mp.setOnCompletionListener{ mp -> mp.release()}
         }
-        Log.e("tagg", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        //Log.e("tagg", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     }
 }
