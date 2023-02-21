@@ -82,15 +82,19 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         val d = Data.Builder().putInt("begin", Int.MIN_VALUE).putInt("end", Int.MAX_VALUE).build()
         val t2 = OneTimeWorkRequestBuilder<MyWM1>().setInputData(d).build()
         WorkManager.getInstance(this)
-            .beginWith(t1)
+            .beginWith(t2)
             //.then(t3Test)
             //.then(Arrays.asList(t1, t2))
-            //.then(t2)
+            .then(t1)
             .enqueue()
     }
 
     fun PTT(v: View){
-
+        val t1 = OneTimeWorkRequestBuilder<MyPTT>().build()
+        WorkManager.getInstance(this)
+            .beginWith(t1)
+            //.then(Toast.makeText(applicationContext, "Пора покормить кота!", Toast.LENGTH_SHORT).show())
+            .enqueue()
     }
 
 
