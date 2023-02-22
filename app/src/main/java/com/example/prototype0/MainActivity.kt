@@ -77,6 +77,8 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         am.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, mypIntent)
     }
 
+
+
     fun start_wm(v: View){
         val t1 = OneTimeWorkRequestBuilder<MyWM>().build()
         val d = Data.Builder().putInt("begin", Int.MIN_VALUE).putInt("end", Int.MAX_VALUE).build()
@@ -88,6 +90,8 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
             .then(t1)
             .enqueue()
     }
+
+
 
     fun PTT(v: View){
         val t1 = OneTimeWorkRequestBuilder<MyPTT>().build()
