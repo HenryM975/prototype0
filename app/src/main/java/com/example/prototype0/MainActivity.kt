@@ -25,6 +25,9 @@ import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
+
+    var time = 5000
+
     companion object {
         const val NOTIFICATION_ID = 101
         const val CHANNEL_ID = "channelID"
@@ -94,11 +97,13 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
     fun PTT(v: View){
-        val t1 = OneTimeWorkRequestBuilder<MyPTT>().build()
+        val time = Data.Builder().putInt("time", time).build()
+        val t1 = OneTimeWorkRequestBuilder<MyPTT>().setInputData(time).build()//+
+        val t2 = PeriodicWorkRequestBuilder<MyPTT>(16, TimeUnit.MINUTES).setInputData(time).build()//сиюминутно и через 16 минут
         WorkManager.getInstance(this)
-            .beginWith(t1)
+            //.beginWith(t1)//+
             //.then(Toast.makeText(applicationContext, "Пора покормить кота!", Toast.LENGTH_SHORT).show())
-            .enqueue()
+            .enqueue(t2)
     }
 
 

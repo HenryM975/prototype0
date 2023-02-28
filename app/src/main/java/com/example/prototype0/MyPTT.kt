@@ -16,9 +16,10 @@ import java.lang.Thread.sleep
 class MyPTT(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
     override fun doWork(): Result {
         Log.e("tagg", "MyPTT is start")
-        sleep(5000)
+        val time = inputData.getInt("time",0)
+            //sleep(5000)
         //Toast.makeText(applicationContext, "Пора покормить кота!", Toast.LENGTH_SHORT).show()
-        Notification("Ntitle", "Nmessage")
+        Notification(time.toString(), "Nmessage")
         Log.e("tagg", "MyPTT is complete")
         return Result.success()
     }
@@ -44,8 +45,8 @@ class MyPTT(context: Context, workerParams: WorkerParameters) : Worker(context, 
 
         val builder = NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
             .setSmallIcon(R.drawable.q2)
-            .setContentTitle("My notification")
-            .setContentText("Hello World!")
+            .setContentTitle(Ntitle)
+            .setContentText(Nmessage)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             // Set the intent that will fire when the user taps the notification
             //.setContentIntent(pendingIntent)
