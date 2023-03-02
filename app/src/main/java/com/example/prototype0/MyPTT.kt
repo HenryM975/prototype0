@@ -47,7 +47,7 @@ class MyPTT(context: Context, workerParams: WorkerParameters) : Worker(context, 
             .setSmallIcon(R.drawable.q2)
             .setContentTitle(Ntitle)
             .setContentText(Nmessage)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             // Set the intent that will fire when the user taps the notification
             //.setContentIntent(pendingIntent)
             .setAutoCancel(true)
