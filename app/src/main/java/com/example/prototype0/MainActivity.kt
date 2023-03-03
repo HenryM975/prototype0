@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.app.TimePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
@@ -13,11 +12,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TimePicker
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.*
+import com.example.prototype0.databinding.ActivityMainBinding
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.timer
@@ -32,9 +31,23 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         const val NOTIFICATION_ID = 101
         const val CHANNEL_ID = "channelID"
     }
+
+
+    lateinit var binding: ActivityMainBinding//room
+
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater) //room
+        setContentView(binding.root)
+        val db0 = DB0.getDB0(this)
+        binding.buttonDB.setOnClickListener {
+            val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
+            db0.getDao().AddItem(item)
+        }
+
+
         setContentView(R.layout.activity_main)
 
         val intent = Intent(this, MainActivity::class.java)

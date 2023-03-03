@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DB0Dao {
     @Insert
-    fun AddItem(item: ClipData.Item)
+    fun AddItem(item: DB0Entity)
     @Query("SELECT * FROM table0")
     fun GetAll(): Flow<List<ClipData.Item>>
 }
