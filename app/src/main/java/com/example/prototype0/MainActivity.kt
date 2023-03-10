@@ -13,20 +13,22 @@ import android.view.View
 import android.widget.Button
 import android.widget.TimePicker
 import androidx.annotation.RequiresApi
+//import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.asLiveData
+//import androidx.lifecycle.LiveData
 import androidx.work.*
 import com.example.prototype0.databinding.ActivityMainBinding
 import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.concurrent.timer
+//import kotlin.concurrent.timer?
 
 
 class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
     var time = 5000
-
     companion object {
         const val NOTIFICATION_ID = 101
         const val CHANNEL_ID = "channelID"
@@ -41,15 +43,42 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
         binding = ActivityMainBinding.inflate(layoutInflater) //room
         setContentView(binding.root)
+
+        /*db0.getDao().GetAll().asLiveData().observe(this){
+            it.forEach {
+                //!val text = "Id: $it."
+                binding.textBD.append()
+            }
+        }*/
+        //add to db
         val db0 = DB0.getDB0(this)
-        binding.buttonDB.setOnClickListener {
+        binding.buttonDB.setOnClickListener {//room
             val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
-            db0.getDao().AddItem(item)
+            Thread{
+                db0.getDao().AddItem(item)
+            }.start()
         }
 
 
-        setContentView(R.layout.activity_main)
+        //get from db
+        db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
+            binding.textDB.text = ""
+            list.forEach {
+                val text = "Id: ${it.id} Column0: ${it.Column0} Column1: ${it.Column1}\n"
+                binding.textDB.append(text)
+            }
+            }
 
+
+
+
+
+
+
+
+
+
+        setContentView(R.layout.activity_main)
         val intent = Intent(this, MainActivity::class.java)
         intent.apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -121,3 +150,4 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 }
+

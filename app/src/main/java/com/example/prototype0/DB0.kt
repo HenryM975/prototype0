@@ -11,7 +11,7 @@ abstract class DB0: RoomDatabase() {
     abstract fun getDao(): DB0Dao
     companion object{
         fun getDB0(context: Context) : DB0{
-            return Room.databaseBuilder(context.applicationContext, DB0::class.java, "DB0").build()
+            return Room.databaseBuilder(context.applicationContext, DB0::class.java, "DB0.db").build()
         }
     }
 }
