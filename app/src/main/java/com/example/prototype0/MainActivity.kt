@@ -12,7 +12,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatButton
 //import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
     }
 
 
+
     lateinit var binding: ActivityMainBinding//room
 
     @SuppressLint("MissingPermission")
@@ -50,15 +53,17 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
                 binding.textBD.append()
             }
         }*/
+
+        val buttonDB = findViewById<Button>(R.id.buttonDB)
         //add to db
         val db0 = DB0.getDB0(this)
         binding.buttonDB.setOnClickListener {//room
+            Toast.makeText(this, "buttonDB", Toast.LENGTH_SHORT).show()//не выводит только тут
             val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
             Thread{
                 db0.getDao().AddItem(item)
             }.start()
         }
-
 
         //get from db
         db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
@@ -78,7 +83,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
         val intent = Intent(this, MainActivity::class.java)
         intent.apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -89,6 +94,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
             //Thread.sleep(5000)
             var testButton0 = findViewById<Button>(R.id.test0)
             testButton0.setOnClickListener{
+                Toast.makeText(this, "buttonDB", Toast.LENGTH_SHORT).show()
             val builder = NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("Напоминание")
@@ -121,7 +127,6 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         val mypIntent = PendingIntent.getBroadcast(applicationContext, 10, myIntent, 0)
         am.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, mypIntent)
     }
-
 
 
     fun start_wm(v: View){
