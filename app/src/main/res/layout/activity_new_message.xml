@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewMessageActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backToMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editColumn0DB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Column0Name"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintTop_toBottomOf="@+id/backToMainButton"
+        tools:layout_editor_absoluteX="95dp" />
+
+    <EditText
+        android:id="@+id/editColumn1DB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="Column0Name"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintTop_toBottomOf="@+id/editColumn0DB"
+        tools:layout_editor_absoluteX="95dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/NewMessageSaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="216dp"
+        android:text="Save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,14 +47,6 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         binding = ActivityMainBinding.inflate(layoutInflater) //room
         setContentView(binding.root)
 
-        /*db0.getDao().GetAll().asLiveData().observe(this){
-            it.forEach {
-                //!val text = "Id: $it."
-                binding.textBD.append()
-            }
-        }*/
-
-        val buttonDB = findViewById<Button>(R.id.buttonDB)
         //add to db
         val db0 = DB0.getDB0(this)
         binding.buttonDB.setOnClickListener {//room
@@ -81,7 +73,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
                     Thread{
                         db0.getDao().Delete(it)
                     }.start()
-                    Toast.makeText(this, "Delete+", Toast.LENGTH_SHORT).show()//не выводио только тут
+                    Toast.makeText(this, "Delete+", Toast.LENGTH_SHORT).show()//не выводило только тут
                 }
             }
         }
@@ -123,6 +115,27 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
             //    notify(NOTIFICATION_ID, builder.build()) // посылаем уведомление
             //}
         }
+
+
+
+
+
+        //add components
+        binding.addMessageButton.setOnClickListener {
+            Toast.makeText(this, "+", Toast.LENGTH_SHORT).show()
+            val toNewMessage = Intent(this, NewMessageActivity::class.java)
+            startActivity(toNewMessage)
+        }
+
+
+
+
+
+
+
+
+
+
     }
     fun  setting(v: View){
             val tpf = MyTimePicker()
