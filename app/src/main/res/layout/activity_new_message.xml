@@ -10,44 +10,53 @@
         android:id="@+id/backToMainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
 
-    <EditText
-        android:id="@+id/editColumn0DB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Column0Name"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintTop_toBottomOf="@+id/backToMainButton"
-        tools:layout_editor_absoluteX="95dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
-    <EditText
-        android:id="@+id/editColumn1DB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:hint="Column0Name"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintTop_toBottomOf="@+id/editColumn0DB"
-        tools:layout_editor_absoluteX="95dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/NewMessageSaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="216dp"
-        android:text="Save"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/NewMessageSaveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Save"
+                app:layout_constraintTop_toBottomOf="@+id/editColumn1DB"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/editColumn0DB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:ems="10"
+                android:hint="Column0Name"
+                android:inputType="textPersonName"
+                android:text=""
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="100dp" />
+
+            <EditText
+                android:id="@+id/editColumn1DB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Column1Name"
+                android:inputType="textPersonName"
+                android:text=""
+                app:layout_constraintTop_toBottomOf="@+id/editColumn0DB"
+                tools:layout_editor_absoluteX="100dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
