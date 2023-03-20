@@ -19,9 +19,12 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.asLiveData
+import androidx.recyclerview.widget.RecyclerView
 //import androidx.lifecycle.LiveData
 import androidx.work.*
+import com.example.prototype0.adapter.DataAdapter
 import com.example.prototype0.databinding.ActivityMainBinding
+import com.example.prototype0.model.DataModel
 import java.util.*
 import java.util.concurrent.TimeUnit
 //import kotlin.concurrent.timer?
@@ -39,6 +42,8 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
     lateinit var binding: ActivityMainBinding//room
+    lateinit var adapter: DataAdapter//RecyclerView
+    lateinit var recyclerView: RecyclerView
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +81,11 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
                     Toast.makeText(this, "Delete+", Toast.LENGTH_SHORT).show()//не выводило только тут
                 }
             }
+        }
+
+        //add new button test
+        binding.buttonNewBtn.setOnClickListener {
+
         }
 
 
@@ -129,7 +139,8 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 
-
+        //RecyclerView
+        initial()
 
 
 
@@ -137,6 +148,25 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
     }
+
+    private fun initial() { //RecyclerView
+        recyclerView = binding.recyclerViewData
+        adapter = DataAdapter(this)
+        recyclerView.adapter = adapter
+        adapter.setList(myData())
+    }
+    fun myData(): ArrayList<DataModel>{ //RecyclerView
+        val dataList = ArrayList<DataModel>()
+
+        val data = DataModel("Data0test","Data1test")
+        dataList.add(data)
+        val data1 = DataModel("Data0test1","Data1test1")
+        dataList.add(data1)
+        //and more
+
+        return dataList
+    }
+
     fun  setting(v: View){
             val tpf = MyTimePicker()
             tpf.show(supportFragmentManager, "picker")

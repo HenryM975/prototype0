@@ -65,13 +65,41 @@
                 app:layout_constraintTop_toBottomOf="@+id/buttonDB"
                 tools:layout_editor_absoluteX="141dp" />
 
+
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="96dp"
+                app:layout_constraintTop_toBottomOf="@+id/buttonClearDB"
+                tools:layout_editor_absoluteX="0dp"
+                tools:listitem="@layout/item_data_layout"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <Button
+                android:id="@+id/buttonNewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewData"
+                tools:layout_editor_absoluteX="141dp" />
+
+
+
+
+
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="124dp"
                 android:text="Hello World!"
-                app:layout_constraintTop_toBottomOf="@+id/buttonClearDB"
+                app:layout_constraintTop_toBottomOf="@+id/buttonNewBtn"
                 tools:layout_editor_absoluteX="141dp" />
 
             <Button
