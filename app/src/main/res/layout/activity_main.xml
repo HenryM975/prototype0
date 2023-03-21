@@ -66,9 +66,13 @@
                 tools:layout_editor_absoluteX="141dp" />
 
 
-
-
-
+            <Button
+                android:id="@+id/buttonSizeDB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Size"
+                app:layout_constraintTop_toBottomOf="@+id/buttonClearDB"
+                tools:layout_editor_absoluteX="141dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewData"
@@ -145,6 +149,7 @@
                 android:text="+"
                 app:layout_constraintStart_toEndOf="@+id/buttonClearDB"
                 app:layout_constraintTop_toBottomOf="@+id/buttonDB" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

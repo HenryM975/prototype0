@@ -15,4 +15,6 @@ interface DB0Dao {
     fun GetAll(): Flow<List<DB0Entity>>//!!!+
     @Delete
     fun  Delete(item: DB0Entity)
+    @Query("SELECT COUNT(*)  FROM table0")
+    fun Size(): Int
 }

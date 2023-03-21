@@ -83,6 +83,17 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
             }
         }
 
+        //size db
+        binding.buttonSizeDB.setOnClickListener{
+            var sizeDB = 0
+            Thread {
+                sizeDB = db0.getDao().Size()
+            }
+            Toast.makeText(this, "$sizeDB", Toast.LENGTH_SHORT).show() //0!
+        }
+
+
+
         //add new button test
         binding.buttonNewBtn.setOnClickListener {
 
@@ -136,6 +147,8 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
             val toNewMessage = Intent(this, NewMessageActivity::class.java)
             startActivity(toNewMessage)
         }
+
+
 
 
 
