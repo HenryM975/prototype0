@@ -16,5 +16,5 @@ interface DB0Dao {
     @Delete
     fun  Delete(item: DB0Entity)
     @Query("SELECT COUNT(*)  FROM table0")
-    fun Size(): Int
+    fun Size(): Flow<Int>
 }

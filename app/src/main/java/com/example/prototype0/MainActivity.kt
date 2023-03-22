@@ -85,12 +85,11 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
         //size db
         binding.buttonSizeDB.setOnClickListener{
-            var sizeDB = 0
-            Thread {
-                sizeDB = db0.getDao().Size()
+            db0.getDao().Size().asLiveData().observe(this){
+                Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(this, "$sizeDB", Toast.LENGTH_SHORT).show() //0!
         }
+
 
 
 
