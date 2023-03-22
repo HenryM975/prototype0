@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         const val NOTIFICATION_ID = 101
         const val CHANNEL_ID = "channelID"
     }
-
+    //val db0 = DB0.getDB0(this)
 
 
     lateinit var binding: ActivityMainBinding//room
@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
         //RecyclerView
-        initial()
+        initial(db0)
 
 
 
@@ -161,21 +161,23 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
     }
 
-    private fun initial() { //RecyclerView
+    private fun initial(db0: DB0) { //RecyclerView
         recyclerView = binding.recyclerViewData
         adapter = DataAdapter(this)
         recyclerView.adapter = adapter
-        adapter.setList(myData())
+        adapter.setList(myData(db0))
     }
-    fun myData(): ArrayList<DataModel>{ //RecyclerView
+    fun myData(db0: DB0): ArrayList<DataModel>{ //RecyclerView
         val dataList = ArrayList<DataModel>()
 
-        val data = DataModel("Data0test","Data1test")
-        dataList.add(data)
-        val data1 = DataModel("Data0test1","Data1test1")
-        dataList.add(data1)
-        //and more
+        db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
+            binding.textDB.text = ""
+            list.forEach {
+                dataList.add(DataModel(it.Column0.toString(), it.Column1.toString()))
+            }
+        }
 
+        //and more
         return dataList
     }
 
