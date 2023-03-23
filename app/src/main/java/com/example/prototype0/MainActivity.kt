@@ -173,11 +173,9 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
             binding.textDB.text = ""
             list.forEach {
-                dataList.add(DataModel(it.Column0.toString(), it.Column1.toString()))
+                dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
             }
         }
-
-        //and more
         return dataList
     }
 
