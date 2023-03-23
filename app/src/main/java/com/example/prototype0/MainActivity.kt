@@ -32,6 +32,9 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
+    //var id = 0
+
+
 
     var time = 5000
     companion object {

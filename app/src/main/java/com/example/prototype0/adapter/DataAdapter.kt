@@ -33,7 +33,7 @@ class DataAdapter(private val context: Context): RecyclerView.Adapter<DataAdapte
         holder.itemView.setOnClickListener{
             Toast.makeText(context, dataList[position].toString(), Toast.LENGTH_SHORT).show()
             val i = Intent(holder.itemView.context, EditActivity::class.java)
-                .putExtra("key", "test")
+                .putExtra("key", dataList[position].itemDataId)//id
             holder.itemView.context.startActivity(i)
         }
     }
