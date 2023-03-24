@@ -2,6 +2,7 @@ package com.example.prototype0
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.prototype0.databinding.ActivityEditBinding
 import com.example.prototype0.databinding.ActivityMainBinding
 
@@ -16,6 +17,12 @@ class EditActivity : AppCompatActivity() {
 
         val externalMessage = intent.getStringExtra("key")
         binding.textTest.text = externalMessage
+
+        val db0 = DB0.getDB0(this)
+        val id = db0.getDao().SelectId(96)
+        Toast.makeText(this, "$id", Toast.LENGTH_SHORT).show()
+        binding.textTest1.text = id.toString()
+
 
     }
 }
