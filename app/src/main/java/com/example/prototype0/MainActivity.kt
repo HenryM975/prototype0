@@ -54,25 +54,18 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
         binding = ActivityMainBinding.inflate(layoutInflater) //room
         setContentView(binding.root)
-
-        //add to db
         val db0 = DB0.getDB0(this)
-        binding.buttonDB.setOnClickListener {//room
-            Toast.makeText(this, "buttonDB", Toast.LENGTH_SHORT).show()//не выводио только тут
-            val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
-            Thread{
-                db0.getDao().AddItem(item)
-            }.start()
-        }
 
-        //get from db
-        db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
+
+
+        //get from db/*
+        /*db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
             binding.textDB.text = ""
             list.forEach {
                 val text = "Id: ${it.id} Column0: ${it.Column0} Column1: ${it.Column1}\n"
                 binding.textDB.append(text)
             }
-            }
+            }*/
 
         //clear db
         binding.buttonClearDB.setOnClickListener {
@@ -174,7 +167,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         val dataList = ArrayList<DataModel>()
 
         db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
-            binding.textDB.text = ""
+            //binding.textDB.text = ""
             list.forEach {
                 dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
             }

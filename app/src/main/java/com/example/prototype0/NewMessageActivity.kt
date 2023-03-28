@@ -29,6 +29,8 @@ class NewMessageActivity : AppCompatActivity() {
                 Thread{
                     db0.getDao().AddItem(item)
                 }.start()
+                val backToMain = Intent(this, MainActivity::class.java)
+                startActivity(backToMain)
         }
     }
 }
