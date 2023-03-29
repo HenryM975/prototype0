@@ -89,10 +89,6 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 
-        //add new button test
-        binding.buttonNewBtn.setOnClickListener {
-
-        }
 
 
 
