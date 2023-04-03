@@ -59,13 +59,13 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
         //get from db/*
-        /*db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
-            binding.textDB.text = ""
+        db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
+            binding.textView.text = ""
             list.forEach {
                 val text = "Id: ${it.id} Column0: ${it.Column0} Column1: ${it.Column1}\n"
-                binding.textDB.append(text)
+                binding.textView.append(text)
             }
-            }*/
+            }
 
         //clear db
         binding.buttonClearDB.setOnClickListener {
@@ -146,6 +146,15 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         //RecyclerView
         initial(db0)
 
+        //test
+        //add to db
+        binding.buttonDB.setOnClickListener {//room
+        Toast.makeText(this, "buttonDB", Toast.LENGTH_SHORT).show()//не выводио только тут
+        val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
+            Thread{
+                db0.getDao().AddItem(item)
+            }.start()
+        }
 
 
 
