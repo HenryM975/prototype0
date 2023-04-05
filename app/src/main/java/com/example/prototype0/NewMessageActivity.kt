@@ -23,14 +23,15 @@ class NewMessageActivity : AppCompatActivity() {
 
         //save
         val db0 = DB0.getDB0(this)
-        binding.NewMessageSaveButton.setOnClickListener {
-                Toast.makeText(this, "buttonDB", Toast.LENGTH_SHORT).show()//не выводио только тут
-                val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
-                Thread{
-                    db0.getDao().AddItem(item)
-                }.start()
-                val backToMain = Intent(this, MainActivity::class.java)
-                startActivity(backToMain)
-        }
+        binding.NewMessageSaveButton.setOnClickListener  {addData(db0)}
+    }
+    fun addData(dB0: DB0){
+        Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show()//не выводио только тут
+        val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
+        Thread{
+            dB0.getDao().AddItem(item)
+        }.start()
+        val backToMain = Intent(this, MainActivity::class.java)
+        startActivity(backToMain)
     }
 }

@@ -48,14 +48,17 @@
 
             <EditText
                 android:id="@+id/editColumn1DB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
                 android:ems="10"
                 android:hint="Column1Name"
-                android:inputType="textPersonName"
+                android:gravity="left"
                 android:text=""
-                app:layout_constraintTop_toBottomOf="@+id/editColumn0DB"
-                tools:layout_editor_absoluteX="100dp" />
+                android:inputType="textMultiLine"
+                android:background="?android:selectableItemBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editColumn0DB" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

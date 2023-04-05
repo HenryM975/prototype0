@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDB"
         tools:layout_editor_absoluteX="16dp"
         tools:listitem="@layout/item_data_layout" />
 
@@ -92,10 +92,12 @@
         android:id="@+id/editColumn0DB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"    android:hint="Column0Name"
-        android:inputType="textPersonName"    android:text=""
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewData"
-        tools:layout_editor_absoluteX="104dp" />
+        android:ems="10"
+        android:hint="Column0Name"
+        android:inputType="textNoSuggestions"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <EditText
         android:id="@+id/editColumn1DB"
@@ -104,18 +106,18 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Column0Name"
-        android:inputType="textPersonName"
+        android:inputType="textNoSuggestions"
         android:text=""
-        app:layout_constraintTop_toBottomOf="@+id/editColumn0DB"
-        tools:layout_editor_absoluteX="104dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editColumn0DB" />
 
-    <Button    android:id="@+id/buttonDB"
+    <Button
+        android:id="@+id/buttonDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
-        app:layout_constraintTop_toBottomOf="@+id/editColumn1DB"
-        tools:layout_editor_absoluteX="141dp" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editColumn1DB" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
