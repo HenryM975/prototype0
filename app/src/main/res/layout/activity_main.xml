@@ -78,16 +78,6 @@
         app:layout_constraintStart_toEndOf="@+id/test0"
         app:layout_constraintTop_toBottomOf="@+id/buttonSizeDB" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDB"
-        tools:layout_editor_absoluteX="16dp"
-        tools:listitem="@layout/item_data_layout" />
-
-    <!--test-->
     <EditText
         android:id="@+id/editColumn0DB"
         android:layout_width="wrap_content"
@@ -118,6 +108,32 @@
         android:text="Save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editColumn1DB" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewData"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDB"
+        tools:layout_editor_absoluteX="16dp"
+        tools:listitem="@layout/item_data_layout" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="29dp"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewData"/>
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <!--test-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

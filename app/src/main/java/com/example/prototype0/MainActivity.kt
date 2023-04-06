@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 
+
+
         //get from db/*
         db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
             binding.textView.text = ""
@@ -144,9 +146,11 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 
-
+        val db1 = DB0.getDB0(this)
         //RecyclerView
-        initial(db0)
+        initial(db1)
+
+
 
         //test
         //add to db
@@ -169,14 +173,26 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         adapter = DataAdapter(this)
         recyclerView.adapter = adapter
         adapter.setList(myData(db0))
+        recyclerView.invalidate()
+        //adapter.notifyDataSetChanged()//-
+        //recyclerView.getAdapter()?.notifyItemInserted(myData(db0).size - 1)//?
     }
     fun myData(db0: DB0): ArrayList<DataModel>{ //RecyclerView
-        val dataList = ArrayList<DataModel>()
+        var dataList = ArrayList<DataModel>()
+        //var i = 0
+        //while(i < 10){
+        //    dataList.add(DataModel(i.toString(), "test", "test"))
+        //    i++
+        //}//так - ок
+
+
 
         db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
             //binding.textDB.text = ""
             list.forEach {
                 dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
+                Toast.makeText(this, it.id.toString(), Toast.LENGTH_SHORT).show()//
+                //dataList.add(DataModel("test", "test", "test"))
             }
         }
         return dataList
