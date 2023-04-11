@@ -4,8 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.prototype0.databinding.ActivityMainBinding
 import com.example.prototype0.databinding.ActivityNewMessageBinding
+import com.example.prototype0.db.DB0
+import com.example.prototype0.db.DB0Entity
 
 class NewMessageActivity : AppCompatActivity() {
     lateinit var binding: ActivityNewMessageBinding

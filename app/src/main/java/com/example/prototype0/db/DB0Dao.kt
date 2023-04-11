@@ -1,6 +1,5 @@
-package com.example.prototype0
+package com.example.prototype0.db
 
-import android.content.ClipData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert

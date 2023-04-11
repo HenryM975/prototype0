@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.prototype0.databinding.ActivityEditBinding
-import com.example.prototype0.databinding.ActivityMainBinding
+import com.example.prototype0.db.DB0
 
 class EditActivity : AppCompatActivity() {
 

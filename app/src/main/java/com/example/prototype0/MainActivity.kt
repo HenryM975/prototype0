@@ -14,7 +14,6 @@ import android.widget.Button
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.AppCompatButton
 //import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -24,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.work.*
 import com.example.prototype0.adapter.DataAdapter
 import com.example.prototype0.databinding.ActivityMainBinding
+import com.example.prototype0.db.DB0
 import com.example.prototype0.model.DataModel
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -54,21 +54,14 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
         binding = ActivityMainBinding.inflate(layoutInflater) //room
         setContentView(binding.root)
+
+
+
+
+
+
+        //DB
         val db0 = DB0.getDB0(this)
-
-
-
-
-
-        //get from db/*
-        db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
-            binding.textView.text = ""
-            list.forEach {
-                val text = "Id: ${it.id} Column0: ${it.Column0} Column1: ${it.Column1}\n"
-                binding.textView.append(text)
-            }
-            }
-
         //clear db
         binding.buttonClearDB.setOnClickListener {
             db0.getDao().GetAll().asLiveData().observe(this) { list ->
@@ -89,7 +82,29 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
             }
         }
 
+        //val db1 = DB0.getDB0(this)
+        //RecyclerView
+        initial(db0)
 
+        //get from db to textView/*
+        /*db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
+            binding.textView.text = ""
+            list.forEach {
+                val text = "Id: ${it.id} Column0: ${it.Column0} Column1: ${it.Column1}\n"
+                binding.textView.append(text)
+            }
+            }*/
+
+        //test
+        //add to db
+        /*binding.buttonDB.setOnClickListener {//room
+        Toast.makeText(this, "buttonDB", Toast.LENGTH_SHORT).show()//не выводио только тут
+        val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
+            Thread{
+                db0.getDao().AddItem(item)
+            }.start()
+        }*/
+    //!DB
 
 
 
@@ -111,7 +126,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
 
        // while (true) {
-            //Thread.sleep(5000)
+            //Thread.sleep
             var testButton0 = findViewById<Button>(R.id.test0)
             testButton0.setOnClickListener{
                 Toast.makeText(this, "buttonDB", Toast.LENGTH_SHORT).show()
@@ -146,21 +161,11 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 
-        val db1 = DB0.getDB0(this)
-        //RecyclerView
-        initial(db1)
 
 
 
-        //test
-        //add to db
-        /*binding.buttonDB.setOnClickListener {//room
-        Toast.makeText(this, "buttonDB", Toast.LENGTH_SHORT).show()//не выводио только тут
-        val item = DB0Entity(null, binding.editColumn0DB.text.toString(),  binding.editColumn1DB.text.toString())
-            Thread{
-                db0.getDao().AddItem(item)
-            }.start()
-        }*/
+
+
 
 
 
@@ -185,18 +190,27 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         //    i++
         //}//так - ок
 
-
-
         db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it
             //binding.textDB.text = ""
             list.forEach {
                 dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
-                Toast.makeText(this, it.id.toString(), Toast.LENGTH_SHORT).show()//
+                //Toast.makeText(this, it.id.toString(), Toast.LENGTH_SHORT).show()//
                 //dataList.add(DataModel("test", "test", "test"))
             }
         }
         return dataList
     }
+
+
+
+
+
+
+
+
+
+
+
 
     fun  setting(v: View){
             val tpf = MyTimePicker()
@@ -214,7 +228,6 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
         am.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, mypIntent)
     }
 
-
     fun start_wm(v: View){
         val t1 = OneTimeWorkRequestBuilder<MyWM>().build()
         val d = Data.Builder().putInt("begin", Int.MIN_VALUE).putInt("end", Int.MAX_VALUE).build()
@@ -227,8 +240,6 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
             .enqueue()
     }
 
-
-
     fun PTT(v: View){
         val time = Data.Builder().putInt("time", time).build()
         val t1 = OneTimeWorkRequestBuilder<MyPTT>().setInputData(time).build()//+
@@ -238,6 +249,8 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
             //.then(Toast.makeText(applicationContext, "Пора покормить кота!", Toast.LENGTH_SHORT).show())
             .enqueue(t2)
     }
+
+
 
 
 }
