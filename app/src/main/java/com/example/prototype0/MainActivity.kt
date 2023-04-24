@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi
 //import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.RecyclerView
 //import androidx.lifecycle.LiveData
@@ -31,6 +32,9 @@ import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
+
+
+    lateinit var db0viewmodel: DB0ViewModel//vm
 
     //var id = 0
 
@@ -57,7 +61,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 
-
+        db0viewmodel = ViewModelProvider(this).get(DB0ViewModel::class.java)
 
 
         //DB
