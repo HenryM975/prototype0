@@ -61,7 +61,10 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
 
 
-        db0viewmodel = ViewModelProvider(this).get(DB0ViewModel::class.java)
+        db0viewmodel = ViewModelProvider(this).get(DB0ViewModel::class.java)//vm
+        db0viewmodel.liveData.observe(this, androidx.lifecycle.Observer {
+            initial(it)
+        })
 
 
         //DB
@@ -88,7 +91,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
         //val db1 = DB0.getDB0(this)
         //RecyclerView
-        initial(db0)
+        //initial(db0)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!old
 
         //get from db to textView/*
         /*db0.getDao().GetAll().asLiveData().observe(this){ list->  //list == it

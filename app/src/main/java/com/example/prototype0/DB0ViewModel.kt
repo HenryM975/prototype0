@@ -1,21 +1,40 @@
 package com.example.prototype0
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.prototype0.db.DB0
+import com.example.prototype0.db.DB0Dao
+import com.example.prototype0.db.DB0Entity
 import com.example.prototype0.model.DataModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.forEach
 import java.util.ArrayList
 
-class DB0ViewModel: ViewModel() {
+class DB0ViewModel(app: Application): AndroidViewModel(app) {
 
-    val liveData = MutableLiveData<String>()
-
+    //val liveData = MutableLiveData<ArrayList<DataModel>>()
+    val liveData = MutableLiveData<DB0>()
     init {
         //val db0 = DB0.getDB0()//
+        val db0 = DB0.getDB0(app)
+        liveData.value = db0
+        val allWords: Flow<List<DB0Entity>> = db0.getDao().GetAll()
+        var entityList = ArrayList<DataModel>()
+
+
+
+
 
     }
+    //fun add(entity: DB0Entity){
+    //    db0.getDao().AddItem(item)
+    //}
 
+
+
+
+    //?
+    /*
     fun myData(db0: DB0): ArrayList<DataModel> { //RecyclerView
         var dataList = ArrayList<DataModel>()
         //var i = 0
@@ -33,6 +52,6 @@ class DB0ViewModel: ViewModel() {
         }
         return dataList
     }
-
+    */
 
 }
