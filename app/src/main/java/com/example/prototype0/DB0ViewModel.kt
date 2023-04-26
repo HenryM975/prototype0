@@ -1,25 +1,35 @@
 package com.example.prototype0
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.prototype0.db.DB0
 import com.example.prototype0.db.DB0Dao
 import com.example.prototype0.db.DB0Entity
 import com.example.prototype0.model.DataModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.forEach
+import kotlinx.coroutines.flow.*
 import java.util.ArrayList
 
 class DB0ViewModel(app: Application): AndroidViewModel(app) {
 
     //val liveData = MutableLiveData<ArrayList<DataModel>>()
-    val liveData = MutableLiveData<DB0>()
+    val liveData = MutableLiveData<ArrayList<DataModel>>()
     init {
         //val db0 = DB0.getDB0()//
         val db0 = DB0.getDB0(app)
-        liveData.value = db0
+        //liveData.value = db0
         val allWords: Flow<List<DB0Entity>> = db0.getDao().GetAll()
-        var entityList = ArrayList<DataModel>()
+        var dataList = ArrayList<DataModel>()
+        dataList.add(DataModel("12", "13", "14"))
+        var list = db0.getDao().GetAll().map{ list-> //map?
+            list.forEach{
+                dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
+                Toast.makeText(app, it.id.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        liveData.value = dataList
+
 
 
 

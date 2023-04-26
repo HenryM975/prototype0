@@ -180,11 +180,13 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener{
 
     }
 
-    private fun initial(db0: DB0) { //RecyclerView
+    //private fun initial(db0: DB0) { //RecyclerView
+    private fun initial(db0: ArrayList<DataModel>) {
         recyclerView = binding.recyclerViewData
         adapter = DataAdapter(this)
         recyclerView.adapter = adapter
-        adapter.setList(myData(db0))
+        //adapter.setList(myData(db0))
+        adapter.setList(db0)
         recyclerView.invalidate()
         //adapter.notifyDataSetChanged()//-
         //recyclerView.getAdapter()?.notifyItemInserted(myData(db0).size - 1)//?
