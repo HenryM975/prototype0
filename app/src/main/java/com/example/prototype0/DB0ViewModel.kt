@@ -21,7 +21,7 @@ class DB0ViewModel(app: Application): AndroidViewModel(app) {
         val allWords: Flow<List<DB0Entity>> = db0.getDao().GetAll()
         var dataList = ArrayList<DataModel>()
         dataList.add(DataModel("12", "13", "14"))
-        var list = db0.getDao().GetAll().map{ list-> //map?
+        var list = db0.getDao().GetAll().onEach{ list-> //map?
             list.forEach{
                 dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
                 Toast.makeText(app, it.id.toString(), Toast.LENGTH_SHORT).show()
