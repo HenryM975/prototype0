@@ -1,14 +1,14 @@
 package com.example.prototype0
 
 import android.app.Application
-import android.widget.Toast
+import android.util.Log
+import androidx.arch.core.util.Function
 import androidx.lifecycle.*
 import com.example.prototype0.db.DB0
-import com.example.prototype0.db.DB0Dao
 import com.example.prototype0.db.DB0Entity
 import com.example.prototype0.model.DataModel
 import kotlinx.coroutines.flow.*
-import java.util.ArrayList
+
 
 class DB0ViewModel(app: Application): AndroidViewModel(app) {
 
@@ -20,19 +20,25 @@ class DB0ViewModel(app: Application): AndroidViewModel(app) {
         //liveData.value = db0
         val allWords: Flow<List<DB0Entity>> = db0.getDao().GetAll()
         var dataList = ArrayList<DataModel>()
-        dataList.add(DataModel("12", "13", "14"))
-        var list = db0.getDao().GetAll().onEach{ list-> //map?
+        dataList.add(DataModel("12 ", "13", "14"))
+        dataList.add(DataModel("1", "1", "1"))
+        /*var list = db0.getDao().GetAll().asLiveData().map{ list-> //map? LiveData в репозиториях https://medium.com/androiddevelopers/viewmodels-and-livedata-patterns-antipatterns-21efaef74a54 !!!
             list.forEach{
                 dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
-                Toast.makeText(app, it.id.toString(), Toast.LENGTH_SHORT).show()
+                //Toast.makeText(app, it.id.toString(), Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
+
+
+        val smth = db0.getDao().GetAll().asLiveData()
+        val currentSmth = Transformations.map(smth, { list ->
+            list.forEach{
+                dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
+                Log.e("tagg", it.id.toString())
+            }
+        })
 
         liveData.value = dataList
-
-
-
-
 
 
     }
