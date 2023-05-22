@@ -34,9 +34,9 @@ class DB0ViewModel(app: Application): AndroidViewModel(app) {
         val currentSmth = Transformations.map(smth, { list ->
             list.forEach{
                 dataList.add(DataModel(it.id.toString(), it.Column0.toString(), it.Column1.toString()))
-                Log.e("tagg", it.id.toString())
             }
         })
+        dataList.add(DataModel("2", "2", "2"))
 
         liveData.value = dataList
 
